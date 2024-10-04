@@ -26,7 +26,7 @@ const validationSchema = Yup.object().shape({
 const Signup = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error, user, token } = useSelector(
+  const { loading, error, user  } = useSelector(
     (state: RootState) => state.user
   );
 
@@ -63,11 +63,6 @@ const Signup = () => {
     console.log(data);
   };
 
-  useEffect(() => {
-    if (token) {
-      navigate("/home");
-    }
-  }, [token, navigate]);
 
   return (
     <div className="signup-container">
@@ -143,7 +138,14 @@ const Signup = () => {
           <button className="signup-btn">
             {loading ? "Registering..." : "Sign Up"}
           </button>
+          <p>
+              or{" "}
+              <span className="login-link">
+                Sign In
+              </span>
+              </p>
         </div>
+       
         {error && <p className="error-message">{error}</p>}
         {user && <p className="success-message">Registration successful!</p>}
       </form>

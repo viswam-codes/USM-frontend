@@ -1,46 +1,51 @@
-
-import { Routes,Route } from 'react-router-dom'
-import LoginContainer from './pages/Login/LoginContainer'
-import Signup from './pages/SignUp/Signup'
-import Home from './pages/Home/Home'
-import ProtectedRoute from './pages/ProtectedRoutes/ProtectedRoutes'
-import AuthenticatedRoute from './pages/ProtectedRoutes/Authenticatedroutes'
+import { Routes, Route } from "react-router-dom";
+import LoginContainer from "./pages/Login/LoginContainer";
+import Signup from "./pages/SignUp/Signup";
+import Home from "./pages/Home/Home";
+import ProtectedRoute from "./pages/ProtectedRoutes/ProtectedRoutes";
+import UnauthenticatedRoute from "./pages/ProtectedRoutes/UnAuthenticatedRoutes";
+import Profile from "./pages/Profile/Profile";
 
 function App() {
-
-
   return (
     <div>
       <Routes>
-      <Route
+        <Route
           path="/login"
           element={
-            <ProtectedRoute redirectPath="/home">
+            <UnauthenticatedRoute>
               <LoginContainer />
-            </ProtectedRoute>
-          }/>
-      <Route
+            </UnauthenticatedRoute>
+          }
+        />
+        <Route
           path="/register"
           element={
-            <ProtectedRoute redirectPath="/home">
+            <UnauthenticatedRoute>
               <Signup />
+            </UnauthenticatedRoute>
+          }
+        />
+        <Route
+          path="/home"
+          element={
+            <ProtectedRoute>
+              <Home />
             </ProtectedRoute>
           }
         />
-      <Route
-          path="/home"
+        <Route
+          path="/profile"
           element={
-            <AuthenticatedRoute>
-              <Home />
-            </AuthenticatedRoute>
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
           }
         />
-      </Routes>
-        
-    </div>
-    
 
-  )
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;

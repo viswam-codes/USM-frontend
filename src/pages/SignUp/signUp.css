@@ -4,14 +4,14 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-image: linear-gradient(135deg, #81FFEF 10%, #F067B4 100%);
-/* Style the signup form */
+  background-image: linear-gradient(135deg, #81ffef 10%, #f067b4 100%);
 }
 .signup-form {
-    position: relative;
-    width: 350px;
-    background-image: linear-gradient(135deg, #52E5E7 10%, #130CB7 100%);  padding: 40px;
-  border-radius: 10px;
+  position: relative;
+  width: 350px;
+  background-image: linear-gradient(135deg, #dfe9f3 10%, #ffffff 100%);
+  padding: 40px;
+  border-radius: 15px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for better aesthetics */
   display: flex;
   flex-direction: column;
@@ -22,20 +22,20 @@
 .signup-form h2 {
   margin-bottom: 20px;
   font-size: 24px;
-  color: #333;
+  color: #000000;
 }
 
 .input-container {
-    position: relative;
-    width: 100%;
-    max-width: 300px;
-    margin: 5px;
-    padding-right: 25px;
-  }
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  margin: 5px;
+  padding-right: 25px;
+}
 
-  .input-container input:hover{
-    border:2px solid #7367f0 ;
-  }
+.input-container input:hover {
+  border: 2px solid #f067b4;
+}
 
 /* Input fields */
 .signup-form input {
@@ -44,88 +44,75 @@
   padding: 10px;
   margin: 10px 0;
   border: 1px solid #ccc;
-  border-radius: 5px;
+  border-radius: 10px;
   font-size: 16px;
-  padding: 10px 10px 10px 30px; 
-  background-image: linear-gradient(135deg, #E3FDF5 10%, #FFE6FA 100%);
+  padding: 10px 10px 10px 30px;
+  background-image: linear-gradient(135deg, #e3fdf5 10%, #ffe6fa 100%);
   margin-bottom: 2px;
 }
 
-
 .input-container .icon {
-    position: absolute;
-    top: 50%;
-    left: 10px;
-    transform: translateY(-50%);
-    color: #7367f0;
-    font-size: 18px;
-    margin-top: 5px;
-  }
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  color: #000000;
+  font-size: 18px;
+  margin-top: 5px;
+}
 
 /* Image upload label */
 .image-label {
-    display: flex;
-    align-items: center;
-    margin-top: 15px;
-    font-size: 16px;
-    color: #333;
-    font-weight: bold;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
+  display: flex;
+  align-items: center;
+  margin-top: 15px;
+  font-size: 16px;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
 
-  .image-label:hover {
-    color: #FFE6FA ; /* Hover color change */
-  }
+.image-label:hover {
+  color: #f800c6; /* Hover color change */
+}
 
-  .image-upload {
-    display: none; /* Hide the default input */
-  }
+.image-upload {
+  display: none; /* Hide the default input */
+}
 
-  .custom-upload-btn {
-    background-image: linear-gradient(135deg, #E3FDF5 10%, #FFE6FA 100%);;
-    border: 2px solid #7367f0;
-    color: #7367f0;
-    padding: 10px 20px;
-    margin-top: 10px;
-    border-radius: 5px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, border-color 0.3s ease;
-  }
-  
-  .custom-upload-btn:hover {
-    background-image: linear-gradient(135deg, #EEEFF0 10%, #D7D7F0 100%);
-    border-color: #333;
-    color: #333;
-  }
+.custom-upload-btn {
+display: none;
+}
 
-  .image-label .icon {
-    margin-right: 8px;
-  }
 
-  .image-upload {
-    width: 100%;
-    margin-top: 10px;
-  }
+.image-label .icon {
+  margin-right: 8px;
+}
 
+.image-upload {
+  width: 100%;
+  margin-top: 10px;
+}
 
 /* Signup button */
 .signup-btn {
-    width: 100%;
-    max-width: 320px;
-    padding: 12px;
-    margin-top: 20px;
-    background-image: linear-gradient(135deg, #FAB2FF 10%, #1904E5 100%);     border-radius: 10px;
-    cursor: pointer;
-    font-size: 18px;
-    color: white;
-  }
+  width: 100%;
+  max-width: 320px;
+  padding: 12px;
+  margin-top: 20px;
+  background-image: linear-gradient(135deg, #FAD0C4 10%, #FFD1FF 100%);
+  border-radius: 10px;
+  border-color: white;
+  cursor: pointer;
+  font-size: 18px;
+  color: #000000;
+}
 
 .signup-btn:hover {
-    background-image: linear-gradient(135deg, #EE9AE5 10%, #5961F9 100%);
+  background-image: linear-gradient(135deg, #e9defa 10%, #fbfcdb 100%);
 }
-.error-message{
+.error-message {
   margin-top: 0px;
   margin-bottom: 0px;
   font-size: smaller;

@@ -21,7 +21,7 @@ const initialState: UserState = {
     user: localStorage.getItem("user") 
       ? JSON.parse(localStorage.getItem("user")!) 
       : null,
-    token: null,
+    token: localStorage.getItem("token")?localStorage.getItem("token"):null,
     error: null,
   };
 
@@ -74,6 +74,10 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+
+
+
+
 export const userSlice = createSlice({
   name: "user",
   initialState,
@@ -83,6 +87,7 @@ export const userSlice = createSlice({
         state.token=null;
 
         localStorage.removeItem("user");
+    
     }
   },
   extraReducers: (builder) => {
@@ -110,15 +115,19 @@ export const userSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.user;
-        state.token = action.payload.token; 
-        
-        localStorage.setItem("user", JSON.stringify(action.payload.user));// Store user data
+        state.token = action.payload.accessToken; 
+        console.log("action:",action.payload)
+        localStorage.setItem("user", JSON.stringify(action.payload.user));
+        localStorage.setItem("token",action.payload.accessToken)// Store user data
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
         console.log(action.payload as string);
         state.error = action.payload as string;
-      });
+      })
+      
+
+      
   },
 });
 

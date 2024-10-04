@@ -8,7 +8,6 @@ import * as yup from "yup";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../redux/store";
 import { loginUser } from "../../redux/features/userSlice";
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 //yup validation schema
@@ -25,13 +24,11 @@ const schema = yup.object().shape({
 
 const LoginContainer = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error, user, token } = useSelector(
+  const { loading, error } = useSelector(
     (state: RootState) => state.user
   );
 
   const navigate = useNavigate();
-
- 
 
   const {
     register,
@@ -41,10 +38,17 @@ const LoginContainer = () => {
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data: any) => {
-    dispatch(loginUser(data));
-    navigate("/home");
+  const onSubmit = async (data: any) => {
+    const result = await dispatch(loginUser(data));
+  
+    // Ensure login was successful and token is stored properly
+    if (loginUser.fulfilled.match(result)) {
+        // Save token to localStorage
+      navigate("/home");
+    }
   };
+
+
 
   return (
     <div>
@@ -53,7 +57,7 @@ const LoginContainer = () => {
           <div className="login-form">
             <h2>Login</h2>
             {error && <p className="error-message">{error}</p>}
-            {user && <p className="success-message">Loggen in!</p>}
+    
 
             {/* Email Input */}
             <div className="input-container">
@@ -99,5 +103,4 @@ const LoginContainer = () => {
     </div>
   );
 };
-
 export default LoginContainer;
