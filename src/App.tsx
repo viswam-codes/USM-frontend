@@ -5,6 +5,8 @@ import Home from "./pages/Home/Home";
 import ProtectedRoute from "./pages/ProtectedRoutes/ProtectedRoutes";
 import UnauthenticatedRoute from "./pages/ProtectedRoutes/UnAuthenticatedRoutes";
 import Profile from "./pages/Profile/Profile";
+import AdminLogin from "./pages/AdminLogin/AdminLogin";
+import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 
 function App() {
   return (
@@ -29,7 +31,7 @@ function App() {
         <Route
           path="/home"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRole="user">
               <Home />
             </ProtectedRoute>
           }
@@ -37,12 +39,29 @@ function App() {
         <Route
           path="/profile"
           element={
-            <ProtectedRoute>
+            <ProtectedRoute allowedRole="user">
               <Profile />
             </ProtectedRoute>
           }
         />
 
+        <Route
+          path="/adminLogin"
+          element={
+            <UnauthenticatedRoute>
+              <AdminLogin />
+            </UnauthenticatedRoute>
+          }
+        />
+
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute allowedRole="admin">
+              <AdminDashboard />
+            </ProtectedRoute>
+          }
+        />
       </Routes>
     </div>
   );

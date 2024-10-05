@@ -8,6 +8,7 @@ interface User {
   name: string;
   email: string;
   image: string;
+  role?:string;
 }
 
 interface UserState {
@@ -138,7 +139,8 @@ export const userSlice = createSlice({
         state.token = action.payload.accessToken; 
         console.log("action:",action.payload)
         localStorage.setItem("user", JSON.stringify(action.payload.user));
-        localStorage.setItem("token",action.payload.accessToken)// Store user data
+        localStorage.setItem("token",action.payload.accessToken);
+        localStorage.setItem("role",action.payload.role);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
