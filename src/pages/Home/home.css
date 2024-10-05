@@ -9,7 +9,8 @@
 
 /* Style for the home box */
 .home-box {
-  background-image: linear-gradient(135deg, #dfe9f3 10%, #ffffff 100%);  width: 400px;
+  background-image: linear-gradient(135deg, #dfe9f3 10%, #ffffff 100%);
+  width: 400px;
   padding: 40px;
   border-radius: 10px;
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
@@ -17,6 +18,8 @@
   flex-direction: column;
   align-items: center;
   text-align: center;
+  
+  animation: fadeIn 1s ease-in-out; /* Add fade-in animation */
 }
 
 /* Image container */
@@ -30,7 +33,7 @@
 
 /* Heading style */
 .heading-tag h1 {
-  color: black ;
+  color: black;
   font-size: 24px;
   margin-bottom: 20px;
 }
@@ -49,10 +52,25 @@
   border-radius: 10px;
   color: #000000;
   border: none;
+  font-weight: bold;
   cursor: pointer;
   font-size: 16px;
 }
 
 .button-container button:hover {
   background-image: linear-gradient(135deg, #e9defa 10%, #fbfcdb 100%);
+  transform: translateY(-2px);
+
+}
+
+/* Fade-in animation (copied from profile.css) */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }

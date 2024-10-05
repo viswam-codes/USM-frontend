@@ -1,9 +1,10 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import axiosInstance from "../../services/axiosConfig";
 
 interface User {
-  id: string;
+  _id: string;
   name: string;
   email: string;
   image: string;
@@ -74,6 +75,24 @@ export const loginUser = createAsyncThunk(
   }
 );
 
+export const updateUserDetails = createAsyncThunk (
+  "user/updateDetails",
+  async({id,formData}:{id:string ,formData:FormData},{rejectWithValue})=>{
+    try{
+      const response = await axios.put(`http://localhost:3000/update/${id}`,formData,{
+        headers:{
+          'Content-Type':'multipart/form-data',
+        },
+        withCredentials:true,
+      });
+      return response.data
+    } catch (error:any){
+      console.log("Error During updating user details:",error);
+      return rejectWithValue(error.response?.data?.message || "Something went wrong");
+    }
+  }
+)
+
 
 
 
@@ -87,6 +106,7 @@ export const userSlice = createSlice({
         state.token=null;
 
         localStorage.removeItem("user");
+        localStorage.removeItem("token");
     
     }
   },
@@ -125,6 +145,22 @@ export const userSlice = createSlice({
         console.log(action.payload as string);
         state.error = action.payload as string;
       })
+      .addCase(updateUserDetails.fulfilled, (state, action) => {
+        state.loading = false;
+        const updatedUser = action.payload as User; 
+        state.user = {
+          ...state.user,
+          name: updatedUser.name,
+          email: updatedUser.email,
+          image: updatedUser.image,
+          _id: state.user?._id || updatedUser._id, 
+        };
+        localStorage.setItem("user", JSON.stringify(state.user));
+      })
+      .addCase(updateUserDetails.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
       
 
       

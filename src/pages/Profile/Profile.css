@@ -38,7 +38,7 @@
   .change-btn {
     margin-top: 10px;
     padding: 8px 12px;
-    background-image: linear-gradient(135deg, #f8ffae 10%, #43c6ac 100%);
+    background-image: linear-gradient(135deg, #FAD0C4 10%, #FFD1FF 100%);
     border: none;
     border-radius: 5px;
     cursor: pointer;
@@ -48,7 +48,7 @@
   }
   
   .change-btn:hover {
-    background-image: linear-gradient(135deg, #b2fefa 10%, #a1ffce 100%);
+    background-image: linear-gradient(135deg, #e9defa 10%, #fbfcdb 100%);
     transform: scale(1.05);
   }
   
@@ -86,7 +86,7 @@
   .save-btn {
     width: 100%;
     padding: 12px;
-    background-image: linear-gradient(135deg, #f8ffae 10%, #43c6ac 100%);
+    background-image: linear-gradient(135deg, #FAD0C4 10%, #FFD1FF 100%);
     border: none;
     border-radius: 10px;
     cursor: pointer;
@@ -98,7 +98,7 @@
   }
   
   .save-btn:hover {
-    background-image: linear-gradient(135deg, #b2fefa 10%, #a1ffce 100%);
+    background-image: linear-gradient(135deg, #e9defa 10%, #fbfcdb 100%);
     transform: translateY(-2px);
   }
   

@@ -3,19 +3,21 @@ import { RootState } from "../../redux/store";
 import { useSelector, useDispatch } from "react-redux";
 import "./home.css";
 import { logout } from "../../redux/features/userSlice";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import axiosInstance from "../../services/axiosConfig";
+
 
 const Home = () => {
   const { user } = useSelector((state: RootState) => state.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  console.log(user?.image);
+
 
   const handleLogOut = async () => {
+    console.log("logout")
     try {
-      await axios.post(
-        "http://localhost:3000/logout",
+      await axiosInstance.post(
+        "/logout",
         {},
         { withCredentials: true }
       );
@@ -23,7 +25,6 @@ const Home = () => {
      const res= dispatch(logout());
 
      if(res) {
-      localStorage.removeItem("token")
       navigate("/login");
     }
     } catch (error) {
@@ -44,8 +45,11 @@ const Home = () => {
           <button onClick={handleLogOut}>LogOut</button>
           <Link to="/profile"><button> Profile</button></Link>
         </div>
+     
       </div>
+
     </div>
+  
   );
 };
 
