@@ -44,6 +44,7 @@ const AdminLogin = () => {
     const result = await dispatch(loginAdmin(data));
 
     if(loginAdmin.fulfilled.match(result)){
+     
       navigate("/dashboard")
     }
   }

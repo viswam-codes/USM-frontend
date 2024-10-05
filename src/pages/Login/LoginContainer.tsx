@@ -24,7 +24,7 @@ const schema = yup.object().shape({
 
 const LoginContainer = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { loading, error } = useSelector(
+  const { loading, error, } = useSelector(
     (state: RootState) => state.user
   );
 

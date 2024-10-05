@@ -5,6 +5,7 @@ import "./home.css";
 import { logout } from "../../redux/features/userSlice";
 import { Link } from "react-router-dom";
 import axiosInstance from "../../services/axiosConfig";
+import axios from "axios";
 
 
 const Home = () => {
@@ -16,8 +17,8 @@ const Home = () => {
   const handleLogOut = async () => {
     console.log("logout")
     try {
-      await axiosInstance.post(
-        "/logout",
+      await axios.post(
+        "http://localhost:3000/logout",
         {},
         { withCredentials: true }
       );

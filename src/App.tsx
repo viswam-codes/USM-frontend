@@ -4,6 +4,7 @@ import Signup from "./pages/SignUp/Signup";
 import Home from "./pages/Home/Home";
 import ProtectedRoute from "./pages/ProtectedRoutes/ProtectedRoutes";
 import UnauthenticatedRoute from "./pages/ProtectedRoutes/UnAuthenticatedRoutes";
+import AdminUnauthenticatedRoute from "./pages/ProtectedRoutes/AdminUnAuthenticatedRoute";
 import Profile from "./pages/Profile/Profile";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
@@ -44,16 +45,14 @@ function App() {
             </ProtectedRoute>
           }
         />
-
         <Route
           path="/adminLogin"
           element={
-            <UnauthenticatedRoute>
+            <AdminUnauthenticatedRoute>
               <AdminLogin />
-            </UnauthenticatedRoute>
+            </AdminUnauthenticatedRoute>
           }
         />
-
         <Route
           path="/dashboard"
           element={

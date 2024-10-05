@@ -12,18 +12,14 @@ interface User {
 
 interface AdminState {
   loading: boolean;
-  user: User | null;
-  token: string | null;
+  admin: User | null;
   error: string | null;
 }
 
 const initialState: AdminState = {
   loading: false,
-  user: localStorage.getItem("admin")
+  admin: localStorage.getItem("admin")
     ? JSON.parse(localStorage.getItem("admin")!)
-    : null,
-  token: localStorage.getItem("token")
-    ? localStorage.getItem("token")
     : null,
   error: null,
 };
@@ -37,7 +33,7 @@ export const loginAdmin = createAsyncThunk(
     console.log(credentials);
     try {
       const response = await axios.post(
-        "http://localhost:3000/adminLogin",
+        "http://localhost:3000/admin/login",
         credentials,
         { withCredentials: true }
       );
@@ -57,7 +53,14 @@ export const loginAdmin = createAsyncThunk(
 export const adminSlice = createSlice ({
     name:"admin",
     initialState,
-    reducers:{},
+    reducers:{
+      adminLogout:(state)=>{
+        state.admin=null;
+        localStorage.removeItem("admin");
+        localStorage.removeItem("adminToken");
+        localStorage.removeItem("adminRole");
+      }
+    },
     extraReducers:(builder)=>{
         builder
         .addCase(loginAdmin.pending, (state) => {
@@ -66,11 +69,13 @@ export const adminSlice = createSlice ({
           })
           .addCase(loginAdmin.fulfilled, (state, action) => {
             state.loading = false;
-            state.user = action.payload.admin;
-            state.token = action.payload.accessToken; 
+            state.admin = action.payload.admin;
             console.log("action:",action.payload)
             localStorage.setItem("admin", JSON.stringify(action.payload.admin));
-            localStorage.setItem("token",action.payload.accessToken);
+            localStorage.setItem("adminToken", action.payload.adminAccessToken);
+            if(state.admin?.role){
+              localStorage.setItem("adminRole", action.payload.admin?.role);
+            }
           })
           .addCase(loginAdmin.rejected, (state, action) => {
             state.loading = false;
@@ -80,6 +85,8 @@ export const adminSlice = createSlice ({
 
     }
 })
+
+export const {adminLogout} = adminSlice.actions;
 
 export default adminSlice.reducer;
 

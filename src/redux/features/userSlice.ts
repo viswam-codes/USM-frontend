@@ -14,7 +14,6 @@ interface User {
 interface UserState {
   loading: boolean;
   user: User | null;
-  token: string | null;
   error: string | null;
 }
 
@@ -23,7 +22,6 @@ const initialState: UserState = {
     user: localStorage.getItem("user") 
       ? JSON.parse(localStorage.getItem("user")!) 
       : null,
-    token: localStorage.getItem("token")?localStorage.getItem("token"):null,
     error: null,
   };
 
@@ -104,10 +102,10 @@ export const userSlice = createSlice({
   reducers: {
     logout:(state)=>{
         state.user=null;
-        state.token=null;
 
         localStorage.removeItem("user");
-        localStorage.removeItem("token");
+        localStorage.removeItem("userToken");
+        localStorage.removeItem("userRole");
     
     }
   },
@@ -136,11 +134,12 @@ export const userSlice = createSlice({
       .addCase(loginUser.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload.user;
-        state.token = action.payload.accessToken; 
-        console.log("action:",action.payload)
         localStorage.setItem("user", JSON.stringify(action.payload.user));
-        localStorage.setItem("token",action.payload.accessToken);
-        localStorage.setItem("role",action.payload.role);
+        localStorage.setItem("userToken", action.payload.accessToken);
+        if(state.user?.role){
+          localStorage.setItem("userRole",state.user?.role)
+        }
+        
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.loading = false;
