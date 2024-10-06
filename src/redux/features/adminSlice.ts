@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { RootState } from "../store";
 
 interface User {
   _id: string;
@@ -14,9 +15,11 @@ interface AdminState {
   loading: boolean;
   admin: User | null;
   error: string | null;
+  users:any[];
 }
 
 const initialState: AdminState = {
+  users:[],
   loading: false,
   admin: localStorage.getItem("admin")
     ? JSON.parse(localStorage.getItem("admin")!)
@@ -47,6 +50,14 @@ export const loginAdmin = createAsyncThunk(
         return rejectWithValue("Something went wrong. Please try again.");
       }
     }
+  }
+);
+
+export const fetchUsers = createAsyncThunk(
+  'admin/fetchUsers',
+  async()=>{
+    const response = await axios.get('http://localhost:3000/admin/dashboard/user',{withCredentials:true});
+    return response.data
   }
 );
 
@@ -82,6 +93,19 @@ export const adminSlice = createSlice ({
             console.log(action.payload as string);
             state.error = action.payload as string;
           })
+          .addCase(fetchUsers.pending, (state) => {
+            state.loading = true;  
+            state.error = null;    
+          })
+          .addCase(fetchUsers.fulfilled, (state, action) => {
+            state.loading = false;  
+            state.users = action.payload; 
+            console.log(action.payload)
+          })
+          .addCase(fetchUsers.rejected, (state, action) => {
+            state.loading = false;  
+            state.error = action.error.message || 'Failed to fetch users';  
+          });
 
     }
 })
@@ -89,4 +113,6 @@ export const adminSlice = createSlice ({
 export const {adminLogout} = adminSlice.actions;
 
 export default adminSlice.reducer;
+
+export const selectAdminUsers = (state: RootState) => state.admin.users;
 

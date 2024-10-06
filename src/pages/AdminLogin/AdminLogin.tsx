@@ -8,6 +8,7 @@ import {useForm} from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import { loginAdmin } from "../../redux/features/adminSlice";
 import * as yup from "yup"
+import "./AdminLogin.css"
 
 const schema = yup.object().shape({
   email: yup
@@ -53,7 +54,8 @@ const AdminLogin = () => {
     <div>
       <div className="adminlog-container">
         <form onSubmit={handleSubmit(onSubmit)} noValidate>
-            <h2>Admin Login</h2>
+          <div className="admin-form">
+          <h2>Admin Login</h2>
             {error && <p className="error-message">{error}</p>}
             <div className="adminput-container">
             <FiMail className="icon" />
@@ -72,6 +74,7 @@ const AdminLogin = () => {
             </div>
             <button>{loading ? "Registering..." : "Login"}</button>
 
+          </div>
         </form>
       </div>
     </div>

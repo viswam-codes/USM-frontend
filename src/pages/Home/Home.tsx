@@ -17,8 +17,8 @@ const Home = () => {
   const handleLogOut = async () => {
     console.log("logout")
     try {
-      await axios.post(
-        "http://localhost:3000/logout",
+      await axiosInstance.post(
+        "/logout",
         {},
         { withCredentials: true }
       );
