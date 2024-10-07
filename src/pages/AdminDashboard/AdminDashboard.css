@@ -149,6 +149,83 @@
     color: #7f8c8d;
     margin-top: 2rem;
   }
+
+  .admin-user-image {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #e2e8f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+  }
+  
+  .admin-card:hover .admin-user-image {
+    transform: scale(1.05);
+    border-color: #3498db;
+  }
+  
+  /* Update admin-card-info to accommodate the image */
+  .admin-card-info {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 1.25rem; /* Adjusted for better spacing with image */
+  }
+  
+  /* Adjust existing styles for better alignment */
+  .admin-card {
+    padding: 1rem 1.25rem; /* Slightly adjusted padding */
+  }
+  
+  /* Add fallback background for images that fail to load */
+  .admin-user-image-container {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    color: #64748b;
+    font-size: 1.1rem;
+  }
+
+  .no-results {
+    text-align: center;
+    color: #64748b;
+    font-size: 1.1rem;
+    padding: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 1rem;
+  }
+
+
+  .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it sits above other content */
+  }
+  
+  .modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    width: 400px; /* Set the width of your modal */
+    max-width: 90%; /* Responsive width */
+  }
+  
   
   /* Responsive Design */
   @media (max-width: 768px) {
@@ -190,4 +267,20 @@
       width: 100%;
       justify-content: flex-end;
     }
+
+    .admin-user-image {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .admin-user-image-container {
+      width: 40px;
+      height: 40px;
+    }
+  
+    .admin-card-info {
+      gap: 1rem;
+    }
+
+
   }

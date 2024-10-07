@@ -5,7 +5,7 @@ interface AdminUnauthenticatedRouteProps {
   redirectPath?: string;
 }
 
-const AdminUnauthenticatedRoute = ({ children, redirectPath = "/dashboard" }: AdminUnauthenticatedRouteProps) => {
+const AdminUnauthenticatedRoute = ({ children, redirectPath = "/admin/dashboard" }: AdminUnauthenticatedRouteProps) => {
   const adminRole = localStorage.getItem('adminRole');  // Get admin role from localStorage
 
   // If the admin is already logged in, redirect them

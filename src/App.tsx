@@ -8,6 +8,7 @@ import AdminUnauthenticatedRoute from "./pages/ProtectedRoutes/AdminUnAuthentica
 import Profile from "./pages/Profile/Profile";
 import AdminLogin from "./pages/AdminLogin/AdminLogin";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
+import AdminRoutes from "./pages/AdminRoutes/AdminRoutes";
 
 function App() {
   return (
@@ -45,7 +46,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route
+        {/* <Route
           path="/adminLogin"
           element={
             <AdminUnauthenticatedRoute>
@@ -60,7 +61,9 @@ function App() {
               <AdminDashboard />
             </ProtectedRoute>
           }
-        />
+        /> */}
+
+      <Route path="/admin/*" element={<AdminRoutes />} />
       </Routes>
     </div>
   );

@@ -46,7 +46,7 @@ const AdminLogin = () => {
 
     if(loginAdmin.fulfilled.match(result)){
      
-      navigate("/dashboard")
+      navigate("/admin/dashboard")
     }
   }
 

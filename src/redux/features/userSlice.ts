@@ -26,7 +26,7 @@ const initialState: UserState = {
   };
 
 export const registerUser = createAsyncThunk(
-  "http://localhost:3000/register",
+  "user/registerUser",
   async (userData: FormData, { rejectWithValue }) => {
     try {
       console.log("reaching");
@@ -48,7 +48,7 @@ export const registerUser = createAsyncThunk(
 );
 
 export const loginUser = createAsyncThunk(
-  "http://localhost:3000/login",
+  "user/loginUser",
   async (
     credentials: { email: string; password: string },
     { rejectWithValue }
@@ -104,8 +104,6 @@ export const userSlice = createSlice({
         state.user=null;
 
         localStorage.removeItem("user");
-        localStorage.removeItem("userToken");
-        localStorage.removeItem("userRole");
     
     }
   },
@@ -135,10 +133,7 @@ export const userSlice = createSlice({
         state.loading = false;
         state.user = action.payload.user;
         localStorage.setItem("user", JSON.stringify(action.payload.user));
-        localStorage.setItem("userToken", action.payload.accessToken);
-        if(state.user?.role){
-          localStorage.setItem("userRole",state.user?.role)
-        }
+    
         
       })
       .addCase(loginUser.rejected, (state, action) => {

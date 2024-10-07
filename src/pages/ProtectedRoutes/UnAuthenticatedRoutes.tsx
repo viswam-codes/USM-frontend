@@ -6,10 +6,10 @@ interface UnauthenticatedRouteProps {
 }
 
 const UnauthenticatedRoute = ({ children, redirectPath = "/home" }: UnauthenticatedRouteProps) => {
-  const userRole = localStorage.getItem('userRole');  
+  const user = localStorage.getItem('user');  
 
  
-  if (userRole) {
+  if (user) {
     return <Navigate to={redirectPath} />;  
   }
 

@@ -117,3 +117,8 @@ display: none;
   margin-bottom: 0px;
   font-size: smaller;
 }
+
+.login-link a{
+  font-size: large;
+  text-decoration: none;
+}

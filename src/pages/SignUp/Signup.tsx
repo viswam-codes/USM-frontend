@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const validationSchema = Yup.object().shape({
   name: Yup.string().required("Name is required"),
@@ -141,7 +141,7 @@ const Signup = () => {
           <p>
               or{" "}
               <span className="login-link">
-                Sign In
+              <Link to="/login">Sign In</Link>
               </span>
               </p>
         </div>

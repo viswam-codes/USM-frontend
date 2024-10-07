@@ -7,16 +7,16 @@ interface ProtectedRouteProps {
 }
 
 const ProtectedRoute = ({ children, redirectPath = "/login", allowedRole }: ProtectedRouteProps) => {
-  const userToken = localStorage.getItem('userToken');  // Get user token from localStorage
-  const adminToken = localStorage.getItem('adminToken');  // Get admin token from localStorage
+  const user = localStorage.getItem('user');  // Get user token from localStorage
+  const admin = localStorage.getItem('admin');  // Get admin token from localStorage
 
   // Check if the user or admin is logged in
-  if (allowedRole === "user" && !userToken) {
+  if (allowedRole === "user" && !user) {
     return <Navigate to={redirectPath} />; // Redirect to login if user not logged in
   }
 
-  if (allowedRole === "admin" && !adminToken) {
-    return <Navigate to="/adminLogin" />; // Redirect to admin login if admin not logged in
+  if (allowedRole === "admin" && !admin) {
+    return <Navigate to="/admin/login" />; // Redirect to admin login if admin not logged in
   }
 
   return children; // Render children if access is allowed
